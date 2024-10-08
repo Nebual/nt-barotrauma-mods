@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <contentpackage name="Radio Broadcast" modversion="0.1.0" corepackage="False" steamworkshopid="3341600653" gameversion="1.5.9.2">
   <Other file="%ModDir%/Lua/Autorun/init.lua" />
+  <Item file="%ModDir%/ItemsPlaceholder.xml" />
 </contentpackage>
