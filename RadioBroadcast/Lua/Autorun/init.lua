@@ -12,6 +12,7 @@ Hook.Patch('RadioBroadcastOverride', 'Barotrauma.Items.Components.WifiComponent'
 		recipient = ptable['sender']
 	end
 	if (sender.Channel == BROADCAST_CHANNEL and recipient.Channel <= 9) or (recipient.Channel == BROADCAST_CHANNEL and sender.Channel <= 9) then
+		-- allow broadcast channel to hear/speak to channels 0-9. If a player wants to be secret they can go >= 10
 		ptable.PreventExecution = true
 		return true
 	end
