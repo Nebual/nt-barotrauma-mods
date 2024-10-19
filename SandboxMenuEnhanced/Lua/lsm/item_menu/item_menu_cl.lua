@@ -90,13 +90,8 @@ function SandboxMenu.ItemSpawn.EnumItemCategoryToInteger(category) -- Convert en
     return math.floor(math.log(category, 2) + 1)
 end
 
-local itemTab = GUI.Frame(GUI.RectTransform(Vector2(0.995, 0.9), SandboxMenu.menuContent.RectTransform, GUI.Anchor.Center))
-
-itemTab.RectTransform.AbsoluteOffset = Point(0, 10)
-itemTab.Visible = false
-
-
-itemTab.RectTransform.AbsoluteOffset = Point(0, 10)
+local itemTab = GUI.Frame(GUI.RectTransform(Vector2(0.995, 0.935), SandboxMenu.menuContent.RectTransform, GUI.Anchor.TopCenter))
+itemTab.RectTransform.AbsoluteOffset = Point(0, 65)
 itemTab.Visible = false
 
 
@@ -188,7 +183,7 @@ function SandboxMenu.ItemSpawn.DrawItems()
 end
 
 
-local itemQuality = GUI.DropDown(GUI.RectTransform(Vector2(0.15, 0.05), itemTab.RectTransform, GUI.Anchor.TopLeft), "Normal Quality", 3, nil, false)
+local itemQuality = GUI.DropDown(GUI.RectTransform(Vector2(0.15, 0.05), itemTab.RectTransform, GUI.Anchor.TopLeft), "Normal Quality", 4, nil, false)
 itemQuality.RectTransform.AbsoluteOffset = Point(373, 15)
 itemQuality.AddItem("Normal Quality", 0)
 itemQuality.AddItem("Good Quality", 1)
@@ -203,7 +198,7 @@ local countText = GUI.TextBlock(GUI.RectTransform(Vector2(0.35, 0.1), itemTab.Re
 countText.RectTransform.AbsoluteOffset = Point(450, 10)
 
 local selectedCount = GUI.ScrollBar(GUI.RectTransform(Vector2(0.20, 0.1), itemTab.RectTransform), 0.1, nil, "GUISlider")
-selectedCount.RectTransform.AbsoluteOffset = Point(545, 15)
+selectedCount.RectTransform.AbsoluteOffset = Point(615, 15)
 selectedCount.Range = Vector2(1, 62)
 selectedCount.BarScrollValue = 1
 selectedCount.OnMoved = function ()
@@ -221,7 +216,7 @@ findItemByNameTextBox.OnTextChangedDelegate = function(textBox)
 end
 
 -- Item categories drop menu
-local itemCategory = GUI.DropDown(GUI.RectTransform(Vector2(0.15, 0.05), itemTab.RectTransform, GUI.Anchor.TopLeft), "All Items", 3, nil, false)
+local itemCategory = GUI.DropDown(GUI.RectTransform(Vector2(0.15, 0.05), itemTab.RectTransform, GUI.Anchor.TopLeft), "All Items", 6, nil, false)
 itemCategory.RectTransform.AbsoluteOffset = Point(27, 15)
 
 for k, v in pairs(SandboxMenu.ItemSpawn.itemCategoryEnums) do -- Adding all categories
@@ -258,7 +253,7 @@ for k, v in ipairs(SandboxMenu.ItemSpawn.AllItems) do
 end
 
 -- Mods drop menu
-local modSelection = GUI.DropDown(GUI.RectTransform(Vector2(0.15, 0.05), itemTab.RectTransform, GUI.Anchor.TopLeft), "All Mods", 3, nil, false)
+local modSelection = GUI.DropDown(GUI.RectTransform(Vector2(0.15, 0.05), itemTab.RectTransform, GUI.Anchor.TopLeft), "All Mods", 6, nil, false)
 modSelection.RectTransform.AbsoluteOffset = Point(200, 15)
 
 for k, v in pairs(SandboxMenu.ItemSpawn.ModList) do -- Adding all categories

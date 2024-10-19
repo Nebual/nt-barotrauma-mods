@@ -27,11 +27,14 @@ SandboxMenu.frame = GUI.Frame(GUI.RectTransform(Vector2(1, 1)), nil)
 SandboxMenu.frame.CanBeFocused = false
 
 -- menu frame
-local menu = GUI.Frame(GUI.RectTransform(Vector2(1.5, 1.35), SandboxMenu.frame.RectTransform, GUI.Anchor.Center), nil)
+local menu = GUI.Frame(GUI.RectTransform(Vector2(1.5, 1.15), SandboxMenu.frame.RectTransform, GUI.Anchor.Center), nil)
 menu.CanBeFocused = false
 menu.Visible = false 
 
 SandboxMenu.menuContent = GUI.Frame(GUI.RectTransform(Vector2(0.4, 0.6), menu.RectTransform, GUI.Anchor.Center))
+
+-- make draggable
+local frameHandle = GUI.DragHandle(GUI.RectTransform(Vector2(1,1), SandboxMenu.menuContent.RectTransform, GUI.Anchor.Center), SandboxMenu.menuContent.RectTransform, nil)
 
 -- Кнопка открытия меню
 local button = GUI.Button(GUI.RectTransform(Point(135, 10), SandboxMenu.frame.RectTransform, GUI.Anchor.BottomRight), "Sandbox menu", GUI.Alignment.Center, "GUIButtonSmall")

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="SandboxMenuEnhanced" modversion="1.1.0" corepackage="False" steamworkshopid="3351033629" gameversion="1.5.9.2">
+  <Other file="%ModDir%/Lua/Autorun/lsm_init.lua" />
+</contentpackage>
