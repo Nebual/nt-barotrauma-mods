@@ -32,10 +32,10 @@ selectedPlayer.OnSelected = function(s, obj)
 end
 
 local intensityText = GUI.TextBlock(GUI.RectTransform(Vector2(0.35, 0.1), afflictionsTab.RectTransform), "50", nil, nil, GUI.Alignment.Center)
-intensityText.RectTransform.AbsoluteOffset = Point(250, 15)
+intensityText.RectTransform.AbsoluteOffset = Point(180*GUI.xScale, 15)
 
 local intensity = GUI.ScrollBar(GUI.RectTransform(Vector2(0.35, 0.1), afflictionsTab.RectTransform), 0.1, nil, "GUISlider")
-intensity.RectTransform.AbsoluteOffset = Point(250, 15)
+intensity.RectTransform.AbsoluteOffset = Point(180*GUI.xScale, 15)
 intensity.Range = Vector2(-100, 250)
 intensity.BarScrollValue = 50
 intensity.OnMoved = function ()

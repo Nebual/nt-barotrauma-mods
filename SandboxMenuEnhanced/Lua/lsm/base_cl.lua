@@ -21,13 +21,15 @@ function SandboxMenu.TableHasValue(tbl, value)
     return false
 end 
 
+local GameMain = LuaUserData.CreateStatic('Barotrauma.GameMain')
+local extraUIWidth = GUI.UIWidth < GameMain.GraphicsWidth and (GameMain.GraphicsWidth - GUI.UIWidth) or 0 -- ultrawide's have a smaller UIWidth than the actual screen width
 
 -- Main sandbox frame
 SandboxMenu.frame = GUI.Frame(GUI.RectTransform(Vector2(1, 1)), nil)
 SandboxMenu.frame.CanBeFocused = false
 
 -- menu frame
-local menu = GUI.Frame(GUI.RectTransform(Vector2(1.5, 1.15), SandboxMenu.frame.RectTransform, GUI.Anchor.Center), nil)
+local menu = GUI.Frame(GUI.RectTransform(Vector2(1 + 0.2/GUI.xScale, 1 + 0.3), SandboxMenu.frame.RectTransform, GUI.Anchor.Center), nil)
 menu.CanBeFocused = false
 menu.Visible = false 
 
@@ -36,15 +38,11 @@ SandboxMenu.menuContent = GUI.Frame(GUI.RectTransform(Vector2(0.4, 0.6), menu.Re
 -- make draggable
 local frameHandle = GUI.DragHandle(GUI.RectTransform(Vector2(1,1), SandboxMenu.menuContent.RectTransform, GUI.Anchor.Center), SandboxMenu.menuContent.RectTransform, nil)
 
--- Кнопка открытия меню
-local button = GUI.Button(GUI.RectTransform(Point(135, 10), SandboxMenu.frame.RectTransform, GUI.Anchor.BottomRight), "Sandbox menu", GUI.Alignment.Center, "GUIButtonSmall")
-button.RectTransform.AbsoluteOffset = Point(25, 0)
+-- Menu open button
+local button = GUI.Button(GUI.RectTransform(Point(135*GUI.xScale, 10), SandboxMenu.frame.RectTransform, GUI.Anchor.BottomRight), "Sandbox menu", GUI.Alignment.Center, "GUIButtonSmall")
+button.RectTransform.AbsoluteOffset = Point(24*GUI.xScale - extraUIWidth, 0)
 button.OnClicked = function ()
     menu.Visible = not menu.Visible
-
-    if playersLoaded then return end 
-
-    playersLoaded = true
 end
 
 
@@ -55,6 +53,12 @@ end)
 Hook.Patch("Barotrauma.SubEditorScreen", "AddToGUIUpdateList", function()
     SandboxMenu.frame.AddToGUIUpdateList()
 end)
+Hook.Patch("Barotrauma.GUI", "TogglePauseMenu", {}, function(instance, ptable)
+    if not GUI.PauseMenuOpen and menu.Visible then
+        menu.Visible = false
+        ptable.PreventExecution = true
+    end
+end, Hook.HookMethodType.Before)
 
 function SandboxMenu.RegisterTab(tab)
     table.insert(SandboxMenu.MenuModules, tab)
