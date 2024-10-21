@@ -90,6 +90,29 @@ function SandboxMenu.ItemSpawn.EnumItemCategoryToInteger(category) -- Convert en
     return math.floor(math.log(category, 2) + 1)
 end
 
+
+-- populate ModList/ItemList
+for k, v in ipairs(SandboxMenu.ItemSpawn.AllItems) do
+    if (ItemPrefab.GetItemPrefab(v)) then
+
+        local itemPrefab = ItemPrefab.GetItemPrefab(v)
+
+        table.insert(SandboxMenu.ItemSpawn.ItemList, {
+            id = v,
+            name = itemPrefab.ToString(),
+            description = itemPrefab.Description.ToString(),
+            inventoryIcon = itemPrefab.InventoryIcon or itemPrefab.Sprite,
+            category = SandboxMenu.ItemSpawn.EnumItemCategoryToInteger(itemPrefab.category),
+            mod = itemPrefab.ContentPackage.Name,
+        } )
+
+        if not SandboxMenu.TableHasValue(SandboxMenu.ItemSpawn.ModList, itemPrefab.ContentPackage.Name) then -- Adding mod in modlist if we didn't added it befor
+            table.insert(SandboxMenu.ItemSpawn.ModList, itemPrefab.ContentPackage.Name)
+        end
+    end
+end
+
+
 local itemTab = GUI.Frame(GUI.RectTransform(Vector2(0.995, 0.935), SandboxMenu.menuContent.RectTransform, GUI.Anchor.TopCenter))
 itemTab.RectTransform.AbsoluteOffset = Point(0, 65)
 itemTab.Visible = false
@@ -239,30 +262,6 @@ findItemByNameTextBox.RectTransform.AbsoluteOffset = Point(25 * GUI.xScale, 15)
 findItemByNameTextBox.OnTextChangedDelegate = function(textBox)
     SandboxMenu.ItemSpawn.ItemName = textBox.Text
     SandboxMenu.ItemSpawn.DrawItems()
-end
-
--- Все предметы в добавляем в список
-for k, v in ipairs(SandboxMenu.ItemSpawn.AllItems) do
-    if (ItemPrefab.GetItemPrefab(v)) then
-        
-        local itemPrefab = ItemPrefab.GetItemPrefab(v)  
-
-        table.insert(SandboxMenu.ItemSpawn.ItemList, {
-            id = v,
-            name = itemPrefab.ToString(),
-            description = itemPrefab.Description.ToString(),
-            inventoryIcon = itemPrefab.InventoryIcon or itemPrefab.Sprite,
-            category = SandboxMenu.ItemSpawn.EnumItemCategoryToInteger(itemPrefab.category),
-            mod = itemPrefab.ContentPackage.Name,
-        } )
-
-        
-        if not SandboxMenu.TableHasValue(SandboxMenu.ItemSpawn.ModList, itemPrefab.ContentPackage.Name) then -- Adding mod in modlist if we didn't added it befor
-            table.insert(SandboxMenu.ItemSpawn.ModList, itemPrefab.ContentPackage.Name)
-        end
-    
-    end
-
 end
 
 
