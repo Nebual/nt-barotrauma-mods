@@ -159,7 +159,8 @@ function SandboxMenu.ItemSpawn.DrawItems()
             currentItemLine = currentItemLine + 1
         end
 
-        local imageItemFrame = GUI.Button(GUI.RectTransform(Point(65*GUI.xScale, 65*GUI.yScale), itemsLines[currentItemLine].Content.RectTransform))
+        local iconSize = 64 / GameSettings.CurrentConfig.Graphics.HUDScale -- remove the 'HUD Scaling' setting factor, its too much
+        local imageItemFrame = GUI.Button(GUI.RectTransform(Point(iconSize*GUI.xScale, iconSize*GUI.yScale), itemsLines[currentItemLine].Content.RectTransform))
 
         imageItemFrame.Color = Color(0,0,0,0)
         imageItemFrame.HoverColor = Color(0,0,0,0)
@@ -190,7 +191,7 @@ function SandboxMenu.ItemSpawn.DrawItems()
 
         end
 
-        imageItemFrame.RectTransform.MinSize = Point(0, 65*GUI.yScale)
+        imageItemFrame.RectTransform.MinSize = Point(0, iconSize*GUI.yScale)
         local sprite = v.inventoryIcon
         local image = GUI.Image(GUI.RectTransform(Vector2(0.95, 0.95), imageItemFrame.RectTransform, GUI.Anchor.Center), sprite)
         image.ToolTip = RichString.Rich(ItemPrefab.GetItemPrefab(v.id.ToString()).GetTooltip().ToString() .. "\n‖color:gui.white‖(identifier: " .. v.id.ToString() ..")‖end‖" );
