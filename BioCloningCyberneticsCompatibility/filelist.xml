@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Bio-Cloning" modversion="0.25" corepackage="False" steamworkshopid="3282945266" gameversion="1.5.9.2" expectedhash="B1B76C5EA49AE7F6488486B02D6ACD91">
+<contentpackage name="Bio-Cloning Cybernetics Compatibility" modversion="0.26" corepackage="False" gameversion="1.5.9.2">
   <Item file="%ModDir%/Items.xml" />
   <Text file="%ModDir%/text.xml" />
   <Afflictions file="%ModDir%/afflictions.xml" />

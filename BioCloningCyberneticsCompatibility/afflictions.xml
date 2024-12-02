@@ -8,6 +8,11 @@
     <Effect minstrength="0" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="0.25" minspeedmultiplier="1.0" maxspeedmultiplier="0.75" resistancefor="damage" minresistance="0" maxresistance="-1">
       <StatValue stattype="MeleeAttackSpeed" minvalue="0" maxvalue="-0.4" />
       <StatValue stattype="MeleeAttackMultiplier" minvalue="0" maxvalue="-0.4" />
+      <!-- Integration with Neurotrauma Cybernetics Enhanced organ transplants: cyberliver slowly fixes at a rate of 10 strength / hour -->
+      <StatusEffect target="Character" interval="40" disabledeltatime="true">
+        <Conditional ntc_cyberliver="gt 0" />
+        <ReduceAffliction identifier="cloneweakness" strength="0.1" />
+      </StatusEffect>
     </Effect>
     <icon texture="%ModDir%/Images/cellulardamage.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
   </CloneWeakness>
@@ -38,6 +43,11 @@
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
         <Affliction identifier="nausea" strength="10" probability="0.3" />
       </StatusEffect>
+      <!-- Integration with Neurotrauma Cybernetics Enhanced organ transplants: cyberliver speeds up recovery -->
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Conditional ntc_cyberliver="gt 0" />
+        <ReduceAffliction identifier="clonefatigue" strength="0.3" />
+      </StatusEffect>
     </Effect>
     <icon texture="%ModDir%/Images/cloningfatigue.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
   </CloneFatigue>
@@ -48,6 +58,11 @@
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
         <Affliction identifier="psychosis" strength="0.2" probability="1" />
       </StatusEffect>
+      <!-- Integration with Neurotrauma Cybernetics Enhanced organ transplants: cyberbrain fixes -->
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Conditional ntc_cyberbrain="gt 0" />
+        <ReduceAffliction identifier="alienhead" strength="1" />
+      </StatusEffect>
     </Effect>
     <icon texture="%ModDir%/Images/decapitation.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
   </AlienHead>
@@ -57,6 +72,11 @@
     <Effect minstrength="0" maxstrength="100" strengthchange="0" resistancefor="oxygenlow" minresistance="0" maxresistance="-0.96" minspeedmultiplier="1.0" maxspeedmultiplier="0.8">
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
         <Affliction identifier="oxygenlow" strength="10" probability="0.005" />
+      </StatusEffect>
+      <!-- Integration with Neurotrauma organ transplants: replacing lungs fixes this -->
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Conditional lungremoved="gt 0" />
+        <ReduceAffliction identifier="postmortembarotrauma" strength="1000" />
       </StatusEffect>
     </Effect>
     <icon texture="%ModDir%/Images/barotraumadeath.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
@@ -106,6 +126,11 @@
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
         <Affliction identifier="invertcontrols" strength="1000" />
       </StatusEffect>
+      <!-- Integration with Neurotrauma Cybernetics Enhanced organ transplants: cyberbrain fixes -->
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Conditional ntc_cyberbrain="gt 0" />
+        <ReduceAffliction identifier="splitconsciousness" strength="1" />
+      </StatusEffect>
     </Effect>
     <icon texture="%ModDir%/Images/split.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
   </SplitConsciousness>
@@ -122,13 +147,24 @@
     <Description textidentifier="afflictiondescription.hemophilia.self" minstrength="0" maxstrength="100" target="Self" />
     <Effect minstrength="0" maxstrength="100" strengthchange="0" resistancefor="bleeding,bloodloss" minresistance="0" maxresistance="-3">
       <StatValue stattype="MedicalItemEffectivenessMultiplier" minvalue="-0.7" maxvalue="-0.7" />
+      <!-- Integration with Neurotrauma organ transplants: kidney replacement fixes -->
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Conditional kidneyremoved="gt 0" />
+        <ReduceAffliction identifier="hemophilia" strength="99999" />
+      </StatusEffect>
     </Effect>
     <icon texture="%ModDir%/Images/hemophilia.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
   </Hemophilia>
   <Narcolepsy name="Narcolepsy" identifier="narcolepsy" description="" type="randomcloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" limbspecific="false" indicatorlimb="Head" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,125,0,255;255,125,0,255">
     <Description textidentifier="afflictiondescription.narcolepsy" minstrength="0" maxstrength="100" target="OtherCharacter" />
     <Description textidentifier="afflictiondescription.narcolepsy.self" minstrength="0" maxstrength="100" target="Self" />
-    <Effect minstrength="0" maxstrength="100" strengthchange="0"></Effect>
+    <Effect minstrength="0" maxstrength="100" strengthchange="0">
+      <!-- Integration with Neurotrauma Cybernetics Enhanced organ transplants: cyberbrain fixes -->
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Conditional ntc_cyberbrain="gt 0" />
+        <ReduceAffliction identifier="narcolepsy" strength="1" />
+      </StatusEffect>
+    </Effect>
     <PeriodicEffect mininterval="480" maxinterval="600">
       <StatusEffect target="Character" multiplybymaxvitality="true">
         <Affliction identifier="passingout" amount="1" />
