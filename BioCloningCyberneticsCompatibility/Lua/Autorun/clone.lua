@@ -39,6 +39,7 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
         if retainOldBody ~= true then goto noretain end
 
         retainedBody = Character.Create("Human", position, ToolBox.RandomSeed(8), nil, 0, false, true)
+        Game.RemovePriorityCharacter(retainedBody) -- prevent crash when using PerformanceFix
         retainedBody.TeamID = CharacterTeamType.Team1
         retainedBody.Kill(CauseOfDeathType.Unknown)
         -- copy afflictions to "old body", allowing for Cybernetics to be retrieved
