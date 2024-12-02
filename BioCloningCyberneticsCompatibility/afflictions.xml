@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <CloneWeakness name="Cellular damage" identifier="cloneweakness" description="" type="cloneweakness" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Torso" activationthreshold="1" healableinmedicalclinic="false" maxstrength="100">
+    <Description textidentifier="afflictiondescription.cloneweakness" minstrength="0" maxstrength="99" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.cloneweakness.uncloneable" minstrength="99" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.cloneweakness.self" minstrength="0" maxstrength="99" target="Self" />
+    <Description textidentifier="afflictiondescription.cloneweakness.self.uncloneable" minstrength="99" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="0.25" minspeedmultiplier="1.0" maxspeedmultiplier="0.75" resistancefor="damage" minresistance="0" maxresistance="-1">
+      <StatValue stattype="MeleeAttackSpeed" minvalue="0" maxvalue="-0.4" />
+      <StatValue stattype="MeleeAttackMultiplier" minvalue="0" maxvalue="-0.4" />
+    </Effect>
+    <icon texture="%ModDir%/Images/cellulardamage.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </CloneWeakness>
+  <Cloning name="Cloning in Progress" identifier="cloning" description="" type="clone" causeofdeathdescription="Died while being cloned." selfcauseofdeathdescription="You did not survive the cloning process." limbspecific="false" indicatorlimb="Torso" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,0,0,255;220,75,0,255;0,255,0,255">
+    <Description textidentifier="afflictiondescription.cloning" />
+    <Effect minstrength="99" maxstrength="100">
+      <StatusEffect target="Character">
+        <Affliction identifier="cloning" amount="-9999" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="25" maxstrength="99" multiplybymaxvitality="true" minvitalitydecrease="1.6" maxvitalitydecrease="0" strengthchange="1" resistancefor="oxygenlow" minresistance="999" maxresistance="999">
+      <StatusEffect target="Character" setvalue="true">
+        <Affliction identifier="stun" amount="5" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="0" maxstrength="25" multiplybymaxvitality="true" minvitalitydecrease="2" maxvitalitydecrease="1.6" strengthchange="3" resistancefor="oxygenlow" minresistance="999" maxresistance="999">
+      <AbilityFlag flagtype="CanNotDieToAfflictions" />
+      <AbilityFlag flagtype="ImmuneToPressure" />
+      <StatusEffect target="Character" setvalue="true">
+        <Affliction identifier="stun" amount="5" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/cloning.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </Cloning>
+  <CloneFatigue name="Clone fatigue" identifier="clonefatigue" description="" type="specialcloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" limbspecific="false" indicatorlimb="Torso" healableinmedicalclinic="true" maxstrength="100" iconcolors="200,200,255,255;0,0,255,255">
+    <Description textidentifier="afflictiondescription.clonefatigue" minstrength="0" maxstrength="100" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="-0.3" resistancefor="damage" minresistance="0" maxresistance="-1.5" minscreenblur="0.0" maxscreenblur="3" minspeedmultiplier="1.0" maxspeedmultiplier="0.4">
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Affliction identifier="nausea" strength="10" probability="0.3" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/cloningfatigue.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </CloneFatigue>
+  <AlienHead name="Alien head" identifier="alienhead" description="" type="cloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Head" healableinmedicalclinic="false" maxstrength="100" iconcolors="81,0,143,255;81,0,143,255">
+    <Description textidentifier="afflictiondescription.alienhead" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.alienhead.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" minskillmultiplier="0.6" maxskillmultiplier="0.6" strengthchange="0">
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Affliction identifier="psychosis" strength="0.2" probability="1" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/decapitation.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </AlienHead>
+  <PostmortemBarotrauma name="Postmortem Barotrauma" identifier="postmortembarotrauma" description="" type="cloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" limbspecific="false" indicatorlimb="Torso" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,12,12,255;255,12,12,255">
+    <Description textidentifier="afflictiondescription.postmortembarotrauma" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.postmortembarotrauma.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="0" resistancefor="oxygenlow" minresistance="0" maxresistance="-0.96" minspeedmultiplier="1.0" maxspeedmultiplier="0.8">
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Affliction identifier="oxygenlow" strength="10" probability="0.005" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/barotraumadeath.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </PostmortemBarotrauma>
+  <FrailBody name="Frail Body" identifier="frailbody" description="" type="randomcloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" limbspecific="false" indicatorlimb="Torso" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,125,0,255;255,125,0,255">
+    <Description textidentifier="afflictiondescription.frailbody" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.frailbody.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="0" resistancefor="poison,debuff,stun,incrementalstun,progressivestun" minresistance="0" maxresistance="-1"></Effect>
+    <icon texture="%ModDir%/Images/frailbody.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </FrailBody>
+  <OpiateIntolerance name="Opiate Intolerance" identifier="opiateintolerance" description="" type="randomcloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" limbspecific="false" indicatorlimb="Torso" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,195,0,255;255,195,0,255">
+    <Description textidentifier="afflictiondescription.opiateintolerance" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.opiateintolerance.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="0">
+      <StatusEffect target="Character" disabledeltatime="true">
+        <Conditional opiateoverdose="gteq 1" />
+        <Affliction identifier="nausea" strength="0.03" probability="1" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/opiateintolerance.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </OpiateIntolerance>
+  <CellularBreakdown name="Cellular Breakdown" identifier="cellularbreakdown" description="" type="cloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" healcostmultiplier="25" limbspecific="false" indicatorlimb="Torso" maxstrength="100" iconcolors="255,75,75,45;255,0,0,255">
+    <Description textidentifier="afflictiondescription.cellularbreakdown" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.cellularbreakdown.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="-0.1">
+      <StatusEffect target="Character" interval="5" disabledeltatime="true">
+        <Sound file="Content/Sounds/Damage/LimbSlash1.ogg" selectionmode="random" range="500" />
+        <Sound file="Content/Sounds/Damage/LimbSlash2.ogg" range="500" />
+        <Sound file="Content/Sounds/Damage/LimbSlash3.ogg" range="500" />
+        <Sound file="Content/Sounds/Damage/LimbSlash4.ogg" range="500" />
+        <Sound file="Content/Sounds/Damage/LimbSlash5.ogg" range="500" />
+        <Sound file="Content/Sounds/Damage/LimbSlash6.ogg" range="500" />
+        <Affliction identifier="organdamage" strength="0.5" probability="1" />
+        <Affliction identifier="cellularbreakdownvisuals" strength="9999" probability="1" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/cellularbreakdown.png" sourcerect="0,0,128,128" color="255,0,0,255" origin="0,0" />
+  </CellularBreakdown>
+  <CellularBreakdownVisual name="Cellular Breakdown (visual effects)" identifier="cellularbreakdownvisuals" description="" type="cloneunique" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="9999" showinhealthscannerthreshold="9999" healableinmedicalclinic="false" limbspecific="false" indicatorlimb="Torso" maxstrength="100">
+    <Effect minstrength="0" maxstrength="100" strengthchange="-100" minchromaticaberration="0.0" maxchromaticaberration="25.0" minscreenblur="0.0" maxscreenblur="2" minspeedmultiplier="1.0" maxspeedmultiplier="0.4"></Effect>
+    <icon texture="%ModDir%/Images/cellularbreakdown.png" sourcerect="0,0,128,128" color="255,0,0,255" origin="0,0" />
+  </CellularBreakdownVisual>
+  <SplitConsciousness name="Split Consciousness" identifier="splitconsciousness" description="" type="randomcloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" showicontoothersthreshold="1000" showinhealthscannerthreshold="1" limbspecific="false" indicatorlimb="Head" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,195,0,255;255,195,0,255">
+    <Description textidentifier="afflictiondescription.splitconsciousness" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.splitconsciousness.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="0">
+      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+        <Affliction identifier="invertcontrols" strength="1000" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/split.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </SplitConsciousness>
+  <MedicineInsensitivity name="Medicine insensitivity" identifier="medicineinsensitivity" description="" type="randomcloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" showinhealthscannerthreshold="1" limbspecific="false" indicatorlimb="Torso" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,0,0,255;255,0,0,255">
+    <Description textidentifier="afflictiondescription.medicineinsensitivity" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.medicineinsensitivity.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="0">
+      <StatValue stattype="MedicalItemEffectivenessMultiplier" minvalue="-0.7" maxvalue="-0.7" />
+    </Effect>
+    <icon texture="%ModDir%/Images/medicineinsensitivity.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </MedicineInsensitivity>
+  <Hemophilia name="Hemophilia" identifier="hemophilia" description="" type="randomcloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" showinhealthscannerthreshold="1" limbspecific="false" indicatorlimb="Torso" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,125,0,255;255,125,0,255">
+    <Description textidentifier="afflictiondescription.hemophilia" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.hemophilia.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="0" resistancefor="bleeding,bloodloss" minresistance="0" maxresistance="-3">
+      <StatValue stattype="MedicalItemEffectivenessMultiplier" minvalue="-0.7" maxvalue="-0.7" />
+    </Effect>
+    <icon texture="%ModDir%/Images/hemophilia.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </Hemophilia>
+  <Narcolepsy name="Narcolepsy" identifier="narcolepsy" description="" type="randomcloneinjury" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="1" limbspecific="false" indicatorlimb="Head" healableinmedicalclinic="false" maxstrength="100" iconcolors="255,125,0,255;255,125,0,255">
+    <Description textidentifier="afflictiondescription.narcolepsy" minstrength="0" maxstrength="100" target="OtherCharacter" />
+    <Description textidentifier="afflictiondescription.narcolepsy.self" minstrength="0" maxstrength="100" target="Self" />
+    <Effect minstrength="0" maxstrength="100" strengthchange="0"></Effect>
+    <PeriodicEffect mininterval="480" maxinterval="600">
+      <StatusEffect target="Character" multiplybymaxvitality="true">
+        <Affliction identifier="passingout" amount="1" />
+      </StatusEffect>
+    </PeriodicEffect>
+    <icon texture="%ModDir%/Images/weakness.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </Narcolepsy>
+  <PassingOut name="Passing out" identifier="passingout" description="" type="cloneunique" causeofdeathdescription="" selfcauseofdeathdescription="" showiconthreshold="9999" showinhealthscannerthreshold="9999" limbspecific="false" indicatorlimb="Head" healableinmedicalclinic="false" maxstrength="120">
+    <Effect minstrength="0" maxstrength="100" strengthchange="5" minscreenblur="0.1" maxscreenblur="1.2" minchromaticaberration="0.0" maxchromaticaberration="200.0" minafflictionoverlayalphamultiplier="0" maxafflictionoverlayalphamultiplier="1" minspeedmultiplier="0.9" maxspeedmultiplier="0.1">
+      <StatusEffect target="Character">
+        <TriggerAnimation Type="Walk" filename="DrunkenWalk" priority="1" ExpectedSpecies="Human" />
+        <TriggerAnimation Type="Run" filename="DrunkenRun" priority="1" ExpectedSpecies="Human" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="100" maxstrength="119" strengthchange="1.5" minscreenblur="1.2" maxscreenblur="2" minafflictionoverlayalphamultiplier="1" maxafflictionoverlayalphamultiplier="1">
+      <StatusEffect target="Character">
+        <Affliction identifier="stun" strength="1" />
+        <TriggerAnimation Type="Walk" filename="DrunkenWalk" priority="1" ExpectedSpecies="Human" />
+        <TriggerAnimation Type="Run" filename="DrunkenRun" priority="1" ExpectedSpecies="Human" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="119" maxstrength="120">
+      <StatusEffect target="Character">
+        <Affliction identifier="passingout" strength="-9999" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/decapitation.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+    <AfflictionOverlay texture="%ModDir%/Images/passingout.png" />
+  </PassingOut>
+  <StrangeReagent name="Strange reagent" identifier="strangereagent" description="" type="cloneunique" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="false" indicatorlimb="Torso" healableinmedicalclinic="false" maxstrength="100" iconcolors="175,55,0,255;175,175,0,255">
+    <Effect minstrength="0" maxstrength="99" strengthchange="0.02"></Effect>
+    <Effect minstrength="99" maxstrength="100" strengthchange="1">
+      <StatusEffect target="Character" disabledeltatime="true">
+        <ReduceAffliction type="specialcloneinjury" amount="99999" />
+        <ReduceAffliction type="cloneunique" amount="99999" />
+        <ReduceAffliction type="cloneinjury" amount="99999" />
+        <ReduceAffliction type="cloneweakness" amount="99999" />
+        <ReduceAffliction type="randomcloneinjury" amount="99999" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Images/strangereagentaffliction.png" sourcerect="0,0,128,128" color="195,136,60,255" origin="0,0" />
+  </StrangeReagent>
+</Afflictions>

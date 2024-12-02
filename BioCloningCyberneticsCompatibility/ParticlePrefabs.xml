@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<prefabs>
+  <cloneindicator LifeTime="0.7" LifeTimeMin="0" StartDelayMin="0" StartDelayMax="0" AngularVelocityMin="0" AngularVelocityMax="0" StartRotationMin="0" StartRotationMax="0" RotateToDirection="False" Drag="0" WaterDrag="0" VelocityChange="0,0" VelocityChangeWater="0,0" CanEnterSubs="True" CollisionRadius="1" InvariantCollisionSize="False" UseCollision="False" DeleteOnCollision="False" Friction="0.5" Restitution="0.5" StartSizeMin="1.7,1.7" StartSizeMax="1.7,1.7" SizeChangeMin="0.1,0.1" SizeChangeMax="0.1,0.1" GrowTime="0.2" StartColor="160,97,194,175" MiddleColor="255,255,255,255" EndColor="255,255,255,0" UseMiddleColor="False" DrawTarget="Both" DrawOnTop="False" DrawAlways="False" BlendState="Additive" Priority="0" AnimDuration="1" LoopAnim="True">
+    <sprite texture="Content/Particles/ParticleAtlas.png" sourcerect="0,256,128,128" />
+  </cloneindicator>
+</prefabs>

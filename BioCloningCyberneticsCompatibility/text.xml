@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <entityname.clonepod>Cloning Pod</entityname.clonepod>
+  <entitydescription.clonepod>Revives dead people in a new body. Requires power, has a 2 minute cooldown.</entitydescription.clonepod>
+  <entityname.strangereagent>Strange Reagent</entityname.strangereagent>
+  <entitydescription.strangereagent>It's a shining, bright yellow fluid in a small glass vial. \n‖color:gui.orange‖When drank:‖color:end‖
+	Inflicts a unique affliction, causing max cellular damage but healing all cloning-related afflictions (including cellular damage and itself) after 1 hour. Max cellular damage means uncloneability.
+	‖color:gui.orange‖When dropped on the floor:‖color:end‖ \nExplodes, cloning all nearby dead humanoid or husk in their own bodies. Also deals a lot of damage, as explosions do.
+	</entitydescription.strangereagent>
+  <entityname.speedcloner>Speed Cloner</entityname.speedcloner>
+  <entitydescription.speedcloner>A compact version of the clone pod that clones and prepares bodies a lot faster, at the cost of higher cellular damage. Still requires power.</entitydescription.speedcloner>
+  <afflictionname.strangereagent>Strange reagent</afflictionname.strangereagent>
+  <afflictiondescription.strangereagent>Strange reagent makes its way through the body. Clears all cloning afflictions when maxed.</afflictiondescription.strangereagent>
+  <afflictionname.cloneweakness>Cellular damage</afflictionname.cloneweakness>
+  <afflictiondescription.cloneweakness.self>Cellular damage caused by cloning. Causes a general deterioration of function.</afflictiondescription.cloneweakness.self>
+  <afflictiondescription.cloneweakness.self.uncloneable>Extensive cellular damage has rendered you practically uncloneable.</afflictiondescription.cloneweakness.self.uncloneable>
+  <afflictiondescription.cloneweakness>The patient is suffering from major cell damage after cloning.</afflictiondescription.cloneweakness>
+  <afflictiondescription.cloneweakness.uncloneable>Subject is uncloneable due to extensive cellular damage. Attempts to clone will go badly.</afflictiondescription.cloneweakness.uncloneable>
+  <afflictionname.alienhead>Alien head</afflictionname.alienhead>
+  <afflictiondescription.alienhead.self>You have no memories of being in this body, and it's freaking you out.</afflictiondescription.alienhead.self>
+  <afflictiondescription.alienhead>Neurological and psychological symptoms after being decapitated and cloned. Causes a reduction in skills and permanent psychosis.</afflictiondescription.alienhead>
+  <afflictionname.postmortembarotrauma>Postmortem barotrauma</afflictionname.postmortembarotrauma>
+  <afflictiondescription.postmortembarotrauma.self>You feel constantly dizzy and short of breath. It hurts to breathe.</afflictiondescription.postmortembarotrauma.self>
+  <afflictiondescription.postmortembarotrauma>The patient was cloned after being crushed by water pressure, causing severe damage to the respiratory system.</afflictiondescription.postmortembarotrauma>
+  <afflictionname.splitconsciousness>Split consciousness</afflictionname.splitconsciousness>
+  <afflictiondescription.splitconsciousness.self>It feels like there's someone else controlling your body along with you.</afflictiondescription.splitconsciousness.self>
+  <afflictionname.narcolepsy>Narcolepsy</afflictionname.narcolepsy>
+  <afflictiondescription.narcolepsy.self>You suffer from occasional but sudden bouts of uncontrollable sleep.</afflictiondescription.narcolepsy.self>
+  <afflictiondescription.narcolepsy>Uncontrollable bouts of sleep caused by cellular damage.</afflictiondescription.narcolepsy>
+  <afflictionname.opiateintolerance>Opiate intolerance</afflictionname.opiateintolerance>
+  <afflictiondescription.opiateintolerance.self>Opiates cause you to vomit.</afflictiondescription.opiateintolerance.self>
+  <afflictiondescription.opiateintolerance>The patient cannot tolerate opiates and will vomit if administered.</afflictiondescription.opiateintolerance>
+  <afflictionname.cellularbreakdown>Cellular breakdown</afflictionname.cellularbreakdown>
+  <afflictiondescription.cellularbreakdown.self>Repeated cloning has led up to rapid and lethal organ failure. Slowly resolves itself over time.</afflictiondescription.cellularbreakdown.self>
+  <afflictiondescription.cellularbreakdown>A lethal condition that causes rapid organ failure. Fatal without treatment, but may resolve itself given enough time.</afflictiondescription.cellularbreakdown>
+  <afflictionname.medicineinsensitivity>Medicine insensitivity</afflictionname.medicineinsensitivity>
+  <afflictiondescription.medicineinsensitivity.self>Your body no longer responds properly to medical treatment due to cloning-related damage.</afflictiondescription.medicineinsensitivity.self>
+  <afflictiondescription.medicineinsensitivity>The patient is almost entirely insensitive to medicine.</afflictiondescription.medicineinsensitivity>
+  <afflictionname.hemophilia>Hemophilia</afflictionname.hemophilia>
+  <afflictiondescription.hemophilia.self>You are extremely prone to heavy bleeding from the most minor of cuts.</afflictiondescription.hemophilia.self>
+  <afflictiondescription.hemophilia>The patient has a tendency to bleed heavily from wounds.</afflictiondescription.hemophilia>
+  <afflictionname.frailbody>Frail body</afflictionname.frailbody>
+  <afflictiondescription.frailbody.self>You are very sensitive to poisons, debuffs and stuns.</afflictiondescription.frailbody.self>
+  <afflictiondescription.frailbody>The patient is vulnerable to the effects of poisons and other debuffs, including stuns.</afflictiondescription.frailbody>
+  <afflictionname.clonefatigue>Clone fatigue</afflictionname.clonefatigue>
+  <afflictiondescription.clonefatigue>Temporary weakness, nausea and sensitivity to damage after cloning.</afflictiondescription.clonefatigue>
+  <afflictionname.cloning>Cloning in progress</afflictionname.cloning>
+  <afflictiondescription.cloning>Subject will wake up when the cloning process is complete.</afflictiondescription.cloning>
+  <ClonePodGUITip>Insert a dead person's ID card with them nearby to clone.</ClonePodGUITip>
+</infotexts>

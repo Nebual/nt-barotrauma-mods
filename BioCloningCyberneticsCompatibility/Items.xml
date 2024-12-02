@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="" identifier="clonepod" category="Machine" Tags="cloning" description="" isshootable="true" Scale="0.5">
+    <Sprite texture="%ModDir%/Images/clonepod.png" sourcerect="78,95,118,373" origin="0.5,0.45" depth="0.8" />
+    <Price baseprice="5000" minavailable="1">
+      <Price storeidentifier="merchantoutpost" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" />
+      <Price storeidentifier="merchantresearch" />
+      <Price storeidentifier="merchantmilitary" multiplier="1.4" />
+      <Price storeidentifier="merchantmine" sold="false" />
+      <Price storeidentifier="merchantengineering" sold="false" />
+    </Price>
+    <ItemContainer capacity="1" slotsperrow="1" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect" UILabel="ClonePodGUITip" AllowAccess="true">
+      <StatusEffect type="OnContained" targettype="This" AllowAccess="false">
+        <dropcontaineditems />
+      </StatusEffect>
+      <StatusEffect type="OnNotContained" targettype="This" AllowAccess="true" />
+      <GuiFrame relativesize="0.3,0.15" anchor="Center" style="ItemUI" />
+      <Containable items="idcard"></Containable>
+    </ItemContainer>
+    <LightComponent range="450.0" lightcolor="160,97,194,75" powerconsumption="10" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+      <StatusEffect type="Always" targettype="This" range="450">
+        <Conditional range="eq 451" />
+        <Explosion range="400" force="1.0" camerashake="33" flashrange="900" flash="true" flashduration="3.0" flashColor="160,97,194,255" screencolor="255,255,255,255" screencolorrange="500" screencolorduration="2.5" showeffects="false" />
+        <ParticleEmitter particle="cloneindicator" AngleMax="360" EmitInterval="2" ParticleAmount="1" ScaleMultiplier="1,1" ColorMultiplier="255,255,255,255" />
+        <sound file="Content/Sounds/Damage/Gore1.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore2.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore3.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore10.ogg" range="700" volume="10" />
+      </StatusEffect>
+      <!--Cooldown-->
+      <StatusEffect type="Always" targettype="This" IsOn="true" delay="120" CheckConditionalAlways="true">
+        <Conditional IsOn="eq false" />
+        <sound file="Content/Sounds/Damage/Gore1.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore2.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore3.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore10.ogg" range="700" volume="10" />
+      </StatusEffect>
+    </LightComponent>
+    <DecorativeSprite texture="Content/Characters/Human/Human_male.png" depth="0.81" offset="-130,70" sourcerect="190,10,49,132" origin="0.5115572,0.8011024" Offset="0, -15" OffsetAnimSpeed="2" OffsetAnim="Sine">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Powered" />
+      <IsActiveConditional targetitemcomponent="LightComponent" IsOn="eq true" />
+    </DecorativeSprite>
+    <DecorativeSprite texture="Content/Characters/Human/Human_male.png" depth="0.83" offset="-160,10" sourcerect="25,139,30,107" origin="0.54,-0.6" Offset="0, -15" OffsetAnimSpeed="2" OffsetAnim="Sine">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Powered" />
+      <IsActiveConditional targetitemcomponent="LightComponent" IsOn="eq true" />
+    </DecorativeSprite>
+    <DecorativeSprite texture="Content/Characters/Human/Human_male.png" depth="0.82" offset="-160,10" sourcerect="18,8,46,108" origin="0.5015572,0" Offset="0, -15" OffsetAnimSpeed="2" OffsetAnim="Sine">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Powered" />
+      <IsActiveConditional targetitemcomponent="LightComponent" IsOn="eq true" />
+    </DecorativeSprite>
+    <DecorativeSprite texture="Content/Characters/Human/Human_male.png" depth="0.84" offset="-160,10" sourcerect="279,222,51,28" origin="0.3,-5.6" Offset="0, -15" OffsetAnimSpeed="2" OffsetAnim="Sine">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Powered" />
+      <IsActiveConditional targetitemcomponent="LightComponent" IsOn="eq true" />
+    </DecorativeSprite>
+    <Powered powerconsumption="10" currpowerconsumption="10" isactive="true">
+      <StatusEffect type="OnActive" targettype="This" disabledeltatime="true">
+        <Conditional targetitemcomponent="LightComponent" IsOn="eq true" />
+        <sound file="%ModDir%/Sound/BlackSmoker.ogg" range="400" volume="10" loop="true" type="OnActive" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" Interval="2.5">
+        <Conditional targetitemcomponent="LightComponent" IsOn="eq true" />
+        <sound file="Content/Sounds/Water/DrownFemale1.ogg" range="800" volume="55" />
+        <sound file="Content/Sounds/Water/DrownFemale2.ogg" range="800" volume="55" />
+        <sound file="Content/Sounds/Water/DrownFemale3.ogg" range="800" volume="55" />
+      </StatusEffect>
+    </Powered>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="power_in" displayname="connection.powerin" />
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+    <Body width="200" height="900" density="20" />
+    <Holdable slots="RightHand+LeftHand" selectkey="Select" msg="ItemMsgDetachWrench" PickingTime="10.0" pickkey="Use" holdpos="0,-700" handle1="-30,75" handle2="30,75" attachable="true" aimable="true" attachedbydefault="true">
+      <requireditem identifier="wrench" type="Equipped" />
+    </Holdable>
+  </Item>
+  <Item name="" identifier="speedcloner" category="Machine" Tags="cloning" description="" isshootable="true" Scale="0.5">
+    <Sprite texture="%ModDir%/Images/speedcloner.png" sourcerect="6,58,270,314" origin="0.5,0.45" depth="0.8" />
+    <Price baseprice="8000" minavailable="1">
+      <Price storeidentifier="merchantoutpost" sold="false" />
+      <Price storeidentifier="merchantcity" sold="false" />
+      <Price storeidentifier="merchantresearch" />
+      <Price storeidentifier="merchantmilitary" sold="false" />
+      <Price storeidentifier="merchantmine" sold="false" />
+      <Price storeidentifier="merchantengineering" sold="false" />
+    </Price>
+    <ItemContainer capacity="1" slotsperrow="1" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect" UILabel="ClonePodGUITip" AllowAccess="true">
+      <StatusEffect type="OnContained" targettype="This" AllowAccess="false">
+        <dropcontaineditems />
+      </StatusEffect>
+      <StatusEffect type="OnNotContained" targettype="This" AllowAccess="true" />
+      <GuiFrame relativesize="0.3,0.15" anchor="Center" style="ItemUI" />
+      <Containable items="idcard"></Containable>
+    </ItemContainer>
+    <LightComponent range="450.0" lightcolor="200,200,24,75" powerconsumption="10" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+      <StatusEffect type="Always" targettype="This" range="450">
+        <Conditional range="eq 451" />
+        <Explosion range="400" force="1.0" camerashake="33" flashrange="900" flash="true" flashduration="3.0" flashColor="200,200,24,255" screencolor="255,255,255,255" screencolorrange="500" screencolorduration="2.5" showeffects="false" />
+        <ParticleEmitter particle="cloneindicator" AngleMax="360" EmitInterval="2" ParticleAmount="1" ScaleMultiplier="1,1" ColorMultiplier="255,255,255,255" />
+        <sound file="Content/Sounds/Damage/Gore1.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore2.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore3.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore10.ogg" range="700" volume="10" />
+      </StatusEffect>
+      <!--Cooldown-->
+      <StatusEffect type="Always" targettype="This" IsOn="true" delay="40" CheckConditionalAlways="true">
+        <Conditional IsOn="eq false" />
+        <sound file="Content/Sounds/Damage/Gore1.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore2.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore3.ogg" range="700" volume="10" />
+        <sound file="Content/Sounds/Damage/Gore10.ogg" range="700" volume="10" />
+      </StatusEffect>
+    </LightComponent>
+    <DecorativeSprite texture="Content/Characters/Human/Human_male.png" depth="0.81" offset="-130,70" sourcerect="190,10,49,132" origin="0.5115572,0.8011024" scale="0.8" Offset="0, -15" OffsetAnimSpeed="6" OffsetAnim="Sine">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Powered" />
+      <IsActiveConditional targetitemcomponent="LightComponent" IsOn="eq true" />
+    </DecorativeSprite>
+    <DecorativeSprite texture="Content/Characters/Human/Human_male.png" depth="0.83" offset="-160,10" sourcerect="25,139,30,107" origin="0.54,-0.6" scale="0.8" Offset="0, -15" OffsetAnimSpeed="6" OffsetAnim="Sine">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Powered" />
+      <IsActiveConditional targetitemcomponent="LightComponent" IsOn="eq true" />
+    </DecorativeSprite>
+    <DecorativeSprite texture="Content/Characters/Human/Human_male.png" depth="0.82" offset="-160,10" sourcerect="18,8,46,108" origin="0.5015572,0" scale="0.8" Offset="0, -15" OffsetAnimSpeed="6" OffsetAnim="Sine">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Powered" />
+      <IsActiveConditional targetitemcomponent="LightComponent" IsOn="eq true" />
+    </DecorativeSprite>
+    <DecorativeSprite texture="Content/Characters/Human/Human_male.png" depth="0.84" offset="-160,10" sourcerect="279,222,51,28" origin="0.3,-5.6" scale="0.8" Offset="0, -15" OffsetAnimSpeed="6" OffsetAnim="Sine">
+      <AnimationConditional Voltage="gt 0.5" targetitemcomponent="Powered" />
+      <IsActiveConditional targetitemcomponent="LightComponent" IsOn="eq true" />
+    </DecorativeSprite>
+    <Powered powerconsumption="10" currpowerconsumption="10" isactive="true">
+      <StatusEffect type="OnActive" targettype="This" disabledeltatime="true">
+        <Conditional targetitemcomponent="LightComponent" IsOn="eq true" />
+        <sound file="%ModDir%/Sound/BlackSmoker.ogg" range="400" volume="10" loop="true" type="OnActive" />
+      </StatusEffect>
+      <StatusEffect type="OnActive" targettype="This" Interval="2.5">
+        <Conditional targetitemcomponent="LightComponent" IsOn="eq true" />
+        <sound file="Content/Sounds/Water/DrownFemale1.ogg" range="800" volume="55" />
+        <sound file="Content/Sounds/Water/DrownFemale2.ogg" range="800" volume="55" />
+        <sound file="Content/Sounds/Water/DrownFemale3.ogg" range="800" volume="55" />
+      </StatusEffect>
+    </Powered>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="power_in" displayname="connection.powerin" />
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+    <Body width="200" height="900" density="20" />
+    <Holdable slots="RightHand+LeftHand" selectkey="Select" msg="ItemMsgDetachWrench" PickingTime="10.0" pickkey="Use" holdpos="0,-700" handle1="-30,75" handle2="30,75" attachable="true" aimable="true" attachedbydefault="true">
+      <requireditem identifier="wrench" type="Equipped" />
+    </Holdable>
+  </Item>
+  <Item name="" identifier="strangereagent" category="Medical" impacttolerance="0.01" maxstacksize="1" maxstacksizecharacterinventory="1" description="" Tags="smallitem,chem,medical" scale="0.5" impactsoundtag="impact_metal_light">
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    <Price baseprice="3500" minavailable="1">
+      <Price storeidentifier="merchantoutpost" sold="false" />
+      <Price storeidentifier="merchantcity" sold="false" />
+      <Price storeidentifier="merchantresearch" />
+      <Price storeidentifier="merchantmilitary" sold="false" />
+      <Price storeidentifier="merchantmine" sold="false" />
+      <Price storeidentifier="merchantengineering" sold="false" />
+    </Price>
+    <PreferredContainer secondary="wreckmedcab,abandonedmedcab,piratemedcab" amount="1" spawnprobability="0.01" />
+    <InventoryIcon texture="%ModDir%/Images/strangereagent.png" sourcerect="0,0,128,128" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Images/strangereagent.png" sourcerect="0,0,128,128" depth="0.6" origin="0.5,0.5" />
+    <Body width="35" height="65" density="20" />
+    <LightComponent range="125.0" lightcolor="140,130,0,175" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="32,28" holdangle="30" aimangle="120" aimable="false" msg="ItemMsgPickUpSelect">
+      <StatusEffect type="OnImpact" target="NearbyCharacters" range="200">
+        <Hook name="SRrevive" custom="thing" />
+        <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="3000" />
+        <sound file="Content/Items/Weapons/ExplosionSmall2.ogg" range="3000" />
+        <sound file="Content/Items/Weapons/ExplosionSmall3.ogg" range="3000" />
+        <Explosion range="200.0" force="45" flashrange="1500" flash="true" flashduration="7.0" flashColor="200,200,24,255" screencolor="255,255,0,245" screencolorrange="200" screencolorduration="4">
+          <Affliction identifier="stun" strength="3" />
+        </Explosion>
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="This" Condition="-9999" />
+      <StatusEffect type="OnSecondaryUse" target="This" Condition="-25.0" />
+      <StatusEffect type="OnSecondaryUse" target="This,Character">
+        <Conditional Condition="lte 1" />
+        <Use />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="This" Condition="-100.0" setvalue="true">
+        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+      </StatusEffect>
+      <StatusEffect type="OnUse" target="UseTarget" disabledeltatime="true">
+        <Affliction identifier="strangereagent" amount="9999" />
+        <Affliction identifier="cloneweakness" amount="9999" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+</Items>
