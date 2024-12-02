@@ -41,6 +41,15 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
         retainedBody = Character.Create("Human", position, ToolBox.RandomSeed(8), nil, 0, false, true)
         retainedBody.TeamID = CharacterTeamType.Team1
         retainedBody.Kill(CauseOfDeathType.Unknown)
+        -- copy afflictions to "old body", allowing for Cybernetics to be retrieved
+        for affliction in character.CharacterHealth.GetAllAfflictions() do
+            local limb = character.CharacterHealth.GetAfflictionLimb(affliction)
+            local newAffliction = affliction.Prefab.Instantiate(affliction.Strength)
+
+            retainedBody.CharacterHealth.ApplyAffliction(limb, newAffliction, false, true, false)
+        end
+        -- force sync afflictions, as normally they aren't synced for dead characters
+        Networking.CreateEntityEvent(retainedBody, Character.CharacterStatusEventData.__new(true))
 
         retainedBody.Info.Name = "Old body of: " .. tostring(newHuman.Name)
 
