@@ -144,6 +144,10 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
             CloneMod.GiveAffliction(newHuman, a.Prefab.Identifier, 9999)
        end
        
+        for talent in character.Info.UnlockedTalents do
+            newHuman.GiveTalent(Identifier(talent.Value), false)
+        end
+
        if SERVER then
             local string = ""
             if character.IsHusk then string = " Your skills have been reset since you were cloned after huskification!"
