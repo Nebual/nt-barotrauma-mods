@@ -174,7 +174,7 @@ Hook.Add("inventoryPutItem", "checkPodForID", function(inv, item, character, ind
     if inv.Owner.Prefab.Identifier ~= "clonepod" and inv.Owner.Prefab.Identifier ~= "speedcloner" then return end
     if inv.Owner.GetComponentString("Powered").Voltage <= 0.5 then return end
     if inv.Owner.GetComponentString("Powered").IsOn == false then return end
-    if item.Name == "ID Card" then
+    if item.Prefab.Identifier.Value == "idcard" or item.Name == "ID Card" then
         for c in item.Components do
             if c.Name == "IdCard" then
                 for char in Character.CharacterList do
