@@ -85,12 +85,14 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
 
 
         if character.IsHusk then
-            -- i'm sure there's a better way to do this
-            newHuman.Info.SetSkillLevel("mechanical", 5)
-            newHuman.Info.SetSkillLevel("medical", 5)
-            newHuman.Info.SetSkillLevel("weapons", 5)
-            newHuman.Info.SetSkillLevel("electrical", 5)
-            newHuman.Info.SetSkillLevel("helm", 5)
+            if CloneMod.enableSkillResets then
+                -- i'm sure there's a better way to do this
+                newHuman.Info.SetSkillLevel("mechanical", 5)
+                newHuman.Info.SetSkillLevel("medical", 5)
+                newHuman.Info.SetSkillLevel("weapons", 5)
+                newHuman.Info.SetSkillLevel("electrical", 5)
+                newHuman.Info.SetSkillLevel("helm", 5)
+            end
             weakness = math.max(weakness * 2, 80)
         end
 
@@ -119,11 +121,13 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
 
         if headMissing == true then
             CloneMod.GiveAffliction(newHuman, "alienhead", 9999)
-            newHuman.Info.SetSkillLevel("mechanical", 5)
-            newHuman.Info.SetSkillLevel("medical", 5)
-            newHuman.Info.SetSkillLevel("weapons", 5)
-            newHuman.Info.SetSkillLevel("electrical", 5)
-            newHuman.Info.SetSkillLevel("helm", 5)
+            if CloneMod.enableSkillResets then
+                newHuman.Info.SetSkillLevel("mechanical", 5)
+                newHuman.Info.SetSkillLevel("medical", 5)
+                newHuman.Info.SetSkillLevel("weapons", 5)
+                newHuman.Info.SetSkillLevel("electrical", 5)
+                newHuman.Info.SetSkillLevel("helm", 5)
+            end
         end
         
         if newHuman.CharacterHealth.GetAfflictionStrengthByIdentifier("cloneweakness") >= 100 then CloneMod.GiveAffliction(newHuman, "cellularbreakdown", 9999) end
@@ -151,8 +155,12 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
 
        if SERVER then
             local string = ""
-            if character.IsHusk then string = " Your skills have been reset since you were cloned after huskification!"
-            elseif headMissing then string = " Your skills have been reset since you were decapitated and cloned!" end
+
+            if CloneMod.enableSkillResets then
+                if character.IsHusk then string = " Your skills have been reset since you were cloned after huskification!"
+                elseif headMissing then string = " Your skills have been reset since you were decapitated and cloned!"
+                end
+            end
             Game.SendDirectChatMessage(ChatMessage.Create("You are being cloned!",
             "Every time you are cloned, you suffer more debilitating debuffs. You will wake up when the cloning process is complete." .. string,
             ChatMessageType.Default, nil, nil, nil, Color(255, 0, 25, 255) ), client)

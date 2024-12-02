@@ -19,3 +19,6 @@ CloneMod.cloneHusks = true
 -- does cloning via clone pod leave behind the old body?
 
 CloneMod.RetainOldBody = true
+
+-- if set to true, cloning a body missing a head (or that is husked) will have their stats reset to 5
+CloneMod.enableSkillResets = false
