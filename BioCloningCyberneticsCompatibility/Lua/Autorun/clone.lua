@@ -5,17 +5,18 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
     -- All first conditionals here
     if character.IsHumanoid == false then return false end
     if character.IsDead == false then return false end
-    --
-
-    -- conditions to explode the body upon cloning
-
     if Entity.Spawner.IsInRemoveQueue(character) then
         return false;
     end
-    local client = CloneMod.FindClientFromCharacter(character)
+
+    local client
+    if SERVER then
+        client = CloneMod.FindClientFromCharacter(character)
+    end
     character.Enabled = false
     Entity.Spawner.AddEntityToRemoveQueue(character)
 
+    -- conditions to explode the body upon cloning
     local uncloneable = character.CharacterHealth.GetAfflictionStrengthByIdentifier("cloneweakness") >= 99.9
     or (character.IsHusk and CloneMod.cloneHusks == false)
 
@@ -153,7 +154,7 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
             newHuman.GiveTalent(Identifier(talent.Value), false)
         end
 
-       if SERVER then
+       if client ~= nil and SERVER then
             local string = ""
 
             if CloneMod.enableSkillResets then
