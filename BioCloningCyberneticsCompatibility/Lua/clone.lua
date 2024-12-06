@@ -38,7 +38,6 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
         if retainOldBody ~= true then goto noretain end
 
         retainedBody = Character.Create("Human", position, ToolBox.RandomSeed(8), nil, 0, false, true)
-        Game.RemovePriorityCharacter(retainedBody) -- prevent crash when using PerformanceFix
         retainedBody.TeamID = CharacterTeamType.Team1
         retainedBody.Kill(CauseOfDeathType.Unknown)
         -- copy afflictions to "old body", allowing for Cybernetics to be retrieved
@@ -48,8 +47,10 @@ local function clone(character, startWeakness, cloneAfflictions, position, clone
 
             retainedBody.CharacterHealth.ApplyAffliction(limb, newAffliction, false, true, false)
         end
-        -- force sync afflictions, as normally they aren't synced for dead characters
-        Networking.CreateEntityEvent(retainedBody, Character.CharacterStatusEventData.__new(true))
+        if SERVER then
+            -- force sync afflictions, as normally they aren't synced for dead characters
+            Networking.CreateEntityEvent(retainedBody, Character.CharacterStatusEventData.__new(true))
+        end
 
         retainedBody.Info.Name = "Old body of: " .. tostring(newHuman.Name)
 
@@ -185,8 +186,9 @@ Hook.Add("inventoryPutItem", "checkPodForID", function(inv, item, character, ind
                         for a in char.CharacterHealth.GetAllAfflictions() do
                             if a.Prefab.AfflictionType == "cloneinjury" or a.Prefab.AfflictionType == "randomcloneinjury" then table.insert(currCloneInjuries, a) end
                         end
-                        local cloned = clone(char, currWeakness, currCloneInjuries, item.WorldPosition, inv.Owner.Prefab.Identifier, CloneMod.RetainOldBody)
-                        if cloned == true then
+                        Timer.Wait(function()
+                            local cloned = clone(char, currWeakness, currCloneInjuries, item.WorldPosition, inv.Owner.Prefab.Identifier, CloneMod.RetainOldBody)
+                            if not cloned then return end
                             -- activate the self destruct mechanism
                             inv.Owner.GetComponentString("LightComponent").range = 451
                             
@@ -200,7 +202,7 @@ Hook.Add("inventoryPutItem", "checkPodForID", function(inv, item, character, ind
                                 local property = inv.Owner.GetComponentString("Powered").SerializableProperties[Identifier("IsOn")]
                                 Networking.CreateEntityEvent(inv.Owner, Item.ChangePropertyEventData(property, inv.Owner.GetComponentString("Powered")))
                             end
-                        end
+                        end, 1)
                     end
                 end
             end
