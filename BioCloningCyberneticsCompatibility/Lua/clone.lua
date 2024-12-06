@@ -1,5 +1,3 @@
-CloneMod = {}
-
 local function clone(character, startWeakness, cloneAfflictions, position, cloner, retainOldBody)
     if SERVER or (CLIENT and Game.IsSingleplayer == true) then
     -- All first conditionals here
